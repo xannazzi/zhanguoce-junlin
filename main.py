@@ -14,7 +14,7 @@ apptitle = '战国策·君临'
 st.set_page_config(page_title=apptitle, page_icon=":eyeglasses:")
 
 path_stage1 = "stage1.xlsx"
-# path_stage2 = "stage2.xlsx"
+path_stage2 = "stage2.xlsx"
 
 
 def get_damage_stage1(soldier,energy,stage_path):
@@ -143,6 +143,15 @@ def get_routine(throw_dice,battle_type,soldier_attack,soldier_defense,path_stage
 # add_ene_attack,add_ene_defense = 0,0
 # from gwosc.api import fetch_event_json
 with st.sidebar:
+
+    # with col0:
+    map = st.selectbox('选择地图',
+                                        ['地图1', '地图2'])
+    if map =='地图1':
+        path_stage = path_stage1
+    if  map =='地图2':
+        path_stage = path_stage2
+
     col1, col2 = st.columns(2)
     with col1:
         st.header("攻方")
@@ -175,7 +184,7 @@ with st.sidebar:
 
 if b == 1:
     throw_dice = [int(value1),int(value2),int(value3)]
-    get_routine(throw_dice,battle_type,soldier_attack,soldier_defense,path_stage1,add_ene_attack,add_ene_defense)
+    get_routine(throw_dice,battle_type,soldier_attack,soldier_defense,path_stage,add_ene_attack,add_ene_defense)
 
 # import setuptools
 # with open('requirements.txt', 'w') as f:
