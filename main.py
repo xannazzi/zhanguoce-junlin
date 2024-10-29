@@ -125,6 +125,10 @@ def get_routine(throw_dice,battle_type,soldier_attack,soldier_defense,add_ene_at
         st.write(f'攻方{sol_maintain_attack}万人已崩溃 ! 守方剩余{sol_maintain_defense}万人')
     elif is_kuibai_defense == 1:
         st.write(f'守方{sol_maintain_defense}万人已崩溃 ! 攻方剩余{sol_maintain_attack}万人')
+        if battle_type == '攻城战':
+            st.write("触发规则 [ 攻城战守方永不崩溃 ]")
+            st.write('【战斗不止】')
+            st.write(f'【剩余兵力】 攻方 : {sol_maintain_attack} 万人 , 守方 : {sol_maintain_defense} 万人')
     else:
         st.write('【战斗不止】')
         st.write(f'【剩余兵力】 攻方 : {sol_maintain_attack} 万人 , 守方 : {sol_maintain_defense} 万人')
