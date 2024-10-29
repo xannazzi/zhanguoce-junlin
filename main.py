@@ -13,11 +13,19 @@ import pandas as pd
 apptitle = '战国策·君临'
 st.set_page_config(page_title=apptitle, page_icon=":eyeglasses:")
 
-path_stage1 = "stage1.xlsx"
+# path_stage1 = "stage1.xlsx"
 
 def get_damage_stage1(soldier,energy):
     # energy = energy
-    df = pd.read_excel(path_stage1)
+    df = pd.DataFrame({'Unnamed: 0': {0: 1, 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9, 9: 10},
+ 1: {0: 0, 1: 0, 2: 0, 3: 0, 4: 1, 5: 1, 6: 2, 7: 2, 8: 3, 9: 3},
+ 2: {0: 0, 1: 0, 2: 0, 3: 0, 4: 1, 5: 1, 6: 2, 7: 2, 8: 3, 9: 3},
+ 3: {0: 1, 1: 1, 2: 1, 3: 1, 4: 2, 5: 2, 6: 3, 7: 3, 8: 4, 9: 4},
+ 4: {0: 1, 1: 1, 2: 1, 3: 1, 4: 2, 5: 2, 6: 3, 7: 3, 8: 4, 9: 4},
+ 5: {0: 2, 1: 2, 2: 2, 3: 2, 4: 3, 5: 3, 6: 4, 7: 4, 8: 5, 9: 5},
+ 6: {0: 2, 1: 2, 2: 2, 3: 2, 4: 3, 5: 3, 6: 4, 7: 4, 8: 5, 9: 5},
+ 7: {0: 3, 1: 3, 2: 3, 3: 3, 4: 4, 5: 4, 6: 5, 7: 5, 8: 6, 9: 6},
+ 8: {0: 3, 1: 3, 2: 3, 3: 3, 4: 4, 5: 4, 6: 5, 7: 5, 8: 6, 9: 6}})
     df.index=  df['Unnamed: 0'].tolist()#.reset_index()
     del df['Unnamed: 0']
 
