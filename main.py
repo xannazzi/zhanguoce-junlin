@@ -14,10 +14,12 @@ apptitle = '战国策·君临'
 st.set_page_config(page_title=apptitle, page_icon=":eyeglasses:")
 
 path_stage1 = "stage1.xlsx"
+# path_stage2 = "stage2.xlsx"
 
-def get_damage_stage1(soldier,energy):
+
+def get_damage_stage1(soldier,energy,stage_path):
     # energy = energy
-    df = pd.read_excel(path_stage1)
+    df = pd.read_excel(stage_path)
     df.index=  df['Unnamed: 0'].tolist()#.reset_index()
     del df['Unnamed: 0']
 
@@ -53,13 +55,13 @@ def get_dice_energy(throw_dice,battle_type):
 
 
 # 计算攻守伤害
-def get_turn_1(soldier_attack,soldier_defense,battle_type,throw_dice,add_ene_attack,add_ene_defense):
+def get_turn_1(soldier_attack,soldier_defense,battle_type,throw_dice,add_ene_attack,add_ene_defense,path_stage):
     # st.write(f'投掷出  { throw_dice }  点!')
     energy_attack,energy_defense = get_dice_energy(throw_dice,battle_type)
     st.write(f'【士气加成】 攻方 {add_ene_attack} , 守方 {add_ene_defense}')
     energy_attack,energy_defense = energy_attack+add_ene_attack,energy_defense+add_ene_defense
-    damage_attack = get_damage_stage1(soldier_attack,energy_attack)
-    damage_defense = get_damage_stage1(soldier_defense,energy_defense)
+    damage_attack = get_damage_stage1(soldier_attack,energy_attack,path_stage)
+    damage_defense = get_damage_stage1(soldier_defense,energy_defense,path_stage)
     return damage_attack,damage_defense
 
 
@@ -82,14 +84,14 @@ def check_quanjian(maintain):
 
 
 # %%
-def get_routine(throw_dice,battle_type,soldier_attack,soldier_defense,add_ene_attack=0,add_ene_defense=0):
+def get_routine(throw_dice,battle_type,soldier_attack,soldier_defense,path_stage,add_ene_attack=0,add_ene_defense=0):
     st.header(f'【攻方{soldier_attack}万人】  VS  【守方{soldier_defense}万人】'  )
     st.header(f'开启 {battle_type} !')
     st.write(f' ')
 
     # st.write(f'士气加成')
     # 算伤害
-    damage_attack,damage_defense = get_turn_1(soldier_attack,soldier_defense,battle_type,throw_dice,add_ene_attack,add_ene_defense)
+    damage_attack,damage_defense = get_turn_1(soldier_attack,soldier_defense,battle_type,throw_dice,add_ene_attack,add_ene_defense,path_stage)
     st.write(f' ')
     st.write(f'【攻方消灭】{damage_attack}万人 !')
     st.write(f'【守方消灭】{damage_defense}万人 !')
@@ -145,11 +147,11 @@ with st.sidebar:
     with col1:
         st.header("攻方")
         soldier_attack = st.slider("原始兵力-攻", 1, 12)
-        add_ene_attack = st.slider("士气加成-攻", 0, 4)
+        add_ene_attack = st.slider("士气加成-攻", 0, 6)
     with col2:
         st.header("守方")
         soldier_defense = st.slider("原始兵力-守", 1, 12)
-        add_ene_defense = st.slider("士气加成-守", 0, 4)
+        add_ene_defense = st.slider("士气加成-守", 0, 6)
 
     col0, col163 = st.columns(2)
     with col0:
@@ -173,7 +175,7 @@ with st.sidebar:
 
 if b == 1:
     throw_dice = [int(value1),int(value2),int(value3)]
-    get_routine(throw_dice,battle_type,soldier_attack,soldier_defense,add_ene_attack,add_ene_defense)
+    get_routine(throw_dice,battle_type,soldier_attack,soldier_defense,path_stage1,add_ene_attack,add_ene_defense)
 
 # import setuptools
 # with open('requirements.txt', 'w') as f:
