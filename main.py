@@ -143,6 +143,7 @@ def get_routine(throw_dice,battle_type,soldier_attack,soldier_defense,path_stage
 # add_ene_attack,add_ene_defense = 0,0
 # from gwosc.api import fetch_event_json
 with st.sidebar:
+    st.image("logo.jpg",width = 250, caption= '薄荷猫版权所有')
 
     # with col0:
     map = st.selectbox('选择地图',
@@ -191,3 +192,4 @@ if b == 1:
 #     f.write(''.join(map(str, setuptools.find_packages())))
 # st.title('Uber pickups in NYC')
 # streamlit run .py
+    
